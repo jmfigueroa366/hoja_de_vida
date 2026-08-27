@@ -1,0 +1,424 @@
+/* ===== Variables ===== */
+:root {
+  --color-fondo: #f6f5f2;
+  --color-tarjeta: #ffffff;
+  --color-texto: #24262b;
+  --color-texto-suave: #5b5e66;
+  --color-primario: #24527a;
+  --color-primario-claro: #e4eff7;
+  --color-borde: #e2e0da;
+  --fuente-titulo: Georgia, 'Times New Roman', serif;
+  --fuente-texto: 'Segoe UI', Arial, sans-serif;
+  --radio: 10px;
+  --ancho-nav: 220px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* Hace que los enlaces internos (#formacion, #proyectos...) se desplacen
+     suavemente en lugar de saltar de golpe. Esto reemplaza el scrollIntoView
+     que antes hacía JavaScript */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fuente-texto);
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+}
+
+/* El checkbox que controla el menú móvil se oculta visualmente,
+   pero sigue funcionando al hacer clic en su <label> */
+#menu-check {
+  display: none;
+}
+
+/* ===== Navegación lateral fija ===== */
+#nav-lateral {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--ancho-nav);
+  height: 100vh;
+  background: var(--color-primario);
+  padding: 2rem 1.2rem;
+  overflow-y: auto;
+}
+
+#nav-lista {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+#nav-lista li {
+  margin-bottom: 0.6rem;
+}
+
+#nav-lista a {
+  color: #eaf4fb;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: block;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+#nav-lista a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.nav-toggle {
+  display: none; /* solo se ve en móvil, ver media query */
+}
+
+/* ===== Contenido principal ===== */
+main {
+  margin-left: var(--ancho-nav);
+  max-width: 860px;
+  padding: 2.5rem 2rem 1rem;
+}
+
+/* ===== 1. Encabezado / información personal ===== */
+.encabezado {
+  display: flex;
+  gap: 1.8rem;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+  scroll-margin-top: 1rem; /* evita que el título quede tapado al hacer scroll con # */
+}
+
+.foto-wrap {
+  flex-shrink: 0;
+}
+
+.foto,
+.foto-placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.foto-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primario);
+  color: white;
+  font-family: var(--fuente-titulo);
+  font-size: 2.2rem;
+}
+
+.encabezado h1 {
+  font-family: var(--fuente-titulo);
+  font-size: 1.9rem;
+  color: var(--color-primario);
+}
+
+.titulo {
+  font-weight: 600;
+  margin-top: 0.2rem;
+}
+
+.subtitulo {
+  color: var(--color-texto-suave);
+  font-size: 0.95rem;
+  margin-top: 0.1rem;
+}
+
+.perfil-texto {
+  margin-top: 1rem;
+  max-width: 60ch;
+}
+
+.contacto-rapido {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+}
+
+.contacto-rapido a {
+  color: var(--color-primario);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border: 1px solid var(--color-borde);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  transition: background 0.2s ease;
+}
+
+.contacto-rapido a:hover {
+  background: var(--color-primario-claro);
+}
+
+/* ===== Secciones generales ===== */
+.seccion {
+  margin-bottom: 3rem;
+  scroll-margin-top: 1.5rem;
+}
+
+.seccion h2 {
+  font-family: var(--fuente-titulo);
+  font-size: 1.4rem;
+  color: var(--color-primario);
+  border-bottom: 2px solid var(--color-borde);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.subtitulo-seccion {
+  font-size: 1.05rem;
+  margin: 1.4rem 0 0.7rem;
+  color: var(--color-texto);
+}
+
+/* ===== Tarjetas ===== */
+.tarjeta {
+  background: var(--color-tarjeta);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 1.1rem 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.tarjeta-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tarjeta h3 {
+  font-size: 1.05rem;
+}
+
+.periodo {
+  font-size: 0.85rem;
+  color: var(--color-texto-suave);
+  white-space: nowrap;
+}
+
+.institucion {
+  color: var(--color-texto-suave);
+  font-size: 0.92rem;
+  margin: 0.2rem 0 0.5rem;
+}
+
+.tarjeta ul {
+  padding-left: 1.1rem;
+  font-size: 0.92rem;
+}
+
+.tarjeta li {
+  margin-bottom: 0.3rem;
+}
+
+/* ===== Barras de progreso (100% CSS, sin JavaScript) ===== */
+.barra-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.barra-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.barra-fondo {
+  background: var(--color-borde);
+  border-radius: 20px;
+  height: 10px;
+  overflow: hidden;
+}
+
+.barra-relleno {
+  height: 100%;
+  background: var(--color-primario);
+  border-radius: 20px;
+  /* La animación "crecer" (definida abajo con @keyframes) hace que la barra
+     se anime sola al cargar la página, sin necesitar JavaScript */
+  animation: crecer 1.2s ease forwards;
+}
+
+/* Cada clase nivel-XX fija el ancho final distinto para cada habilidad */
+.nivel-85 { --ancho-final: 85%; }
+.nivel-80 { --ancho-final: 80%; }
+.nivel-70 { --ancho-final: 70%; }
+.nivel-65 { --ancho-final: 65%; }
+.nivel-60 { --ancho-final: 60%; }
+
+@keyframes crecer {
+  from { width: 0%; }
+  to   { width: var(--ancho-final); }
+}
+
+/* ===== Badges ===== */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.badge {
+  background: var(--color-primario-claro);
+  color: var(--color-primario);
+  font-size: 0.85rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+}
+
+.badge-alt {
+  background: #f1ece2;
+  color: #7a5b2e;
+}
+
+/* ===== Proyectos ===== */
+.proyectos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.proyecto-tarjeta {
+  background: var(--color-tarjeta);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  padding: 1.1rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.proyecto-tarjeta h3 {
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.proyecto-tarjeta p {
+  font-size: 0.9rem;
+  color: var(--color-texto-suave);
+  flex-grow: 1;
+}
+
+.proyecto-tecnologias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.7rem 0;
+}
+
+.proyecto-tecnologias span {
+  font-size: 0.75rem;
+  background: var(--color-primario-claro);
+  color: var(--color-primario);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+}
+
+.proyecto-tarjeta a {
+  color: var(--color-primario);
+  font-size: 0.88rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.proyecto-tarjeta a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Listas simples ===== */
+.lista-simple {
+  list-style: none;
+}
+
+.lista-simple li {
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed var(--color-borde);
+  font-size: 0.92rem;
+}
+
+/* ===== Pie / contacto ===== */
+.pie {
+  border-top: 2px solid var(--color-borde);
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+  scroll-margin-top: 1.5rem;
+}
+
+.derechos {
+  margin-top: 1.2rem;
+  font-size: 0.8rem;
+  color: var(--color-texto-suave);
+}
+
+/* ===== Botón "volver arriba" (es un <a>, no un <button>: no necesita JS) ===== */
+#btn-arriba {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--color-primario);
+  color: white;
+  font-size: 1.1rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Responsive: menú lateral se convierte en menú superior colapsable ===== */
+@media (max-width: 780px) {
+  #nav-lateral {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: auto;
+    padding: 0.8rem 1rem;
+    z-index: 10;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  #nav-lista {
+    display: none;
+    flex-direction: column;
+    margin-top: 0.8rem;
+  }
+  #menu-check:checked ~ #nav-lateral #nav-lista {
+    display: flex;
+  }
+
+  main {
+    margin-left: 0;
+    padding: 1.5rem 1.2rem;
+  }
+
+  .encabezado {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .contacto-rapido {
+    justify-content: center;
+  }
+}
